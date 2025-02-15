@@ -1,13 +1,11 @@
 local utils = require("lsp_diag.utils")
 local methods = require("vim.lsp.protocol").Methods
 
-local M = require("lsp_diag.utils.class"):extend()
-
-function M:init() end
+local M = {}
 
 --- @param action lsp.CodeAction
 --- @param client vim.lsp.Client
-function M:run_action(action, client)
+function M.run_action(action, client)
 	if action.edit then
 		vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
 	end
@@ -19,7 +17,7 @@ end
 --- @param bufnr integer
 --- @param callback fun(actions:lsp.CodeAction[])
 --- @param code_action_context? lsp.CodeActionContext
-function M:send_code_actions(bufnr, callback, code_action_context)
+function M.send_code_actions(bufnr, callback, code_action_context)
 	local offset_encoding = utils.get_offset_encoding(bufnr)
 	local params = vim.lsp.util.make_range_params(0, offset_encoding)
 	local context = vim.tbl_deep_extend("force", {

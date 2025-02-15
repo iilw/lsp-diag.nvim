@@ -1,4 +1,6 @@
 -- Adapted from https://github.com/rxi/classic/blob/master/classic.lua
+
+--- @class lsp_diag.Class
 local Object = {}
 
 Object.__index = Object

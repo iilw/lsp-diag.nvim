@@ -1,21 +1,11 @@
-local M = {}
-
---- @param opts? vim.diagnostic.GotoOpts
-function M.get_next(opts)
-	return vim.diagnostic.get_next(opts)
-end
-
---- @param opts? vim.diagnostic.GotoOpts
-function M.get_prev(opts)
-	return vim.diagnostic.get_prev(opts)
-end
+local M = require("lsp_diag.utils.class"):extend()
 
 --- @param diagnostic vim.Diagnostic
---- @return integer[]
+--- @return {row: integer, col: integer}
 function M.get_pos(diagnostic)
 	return {
-		diagnostic.lnum + 1,
-		diagnostic.col,
+		row = diagnostic.lnum + 1,
+		col = diagnostic.col,
 	}
 end
 
@@ -32,6 +22,11 @@ function M.set_cursor(diagnostic)
 	else
 		print("diagnostic not found")
 	end
+end
+
+--- @param diagnostic vim.Diagnostic
+function M.get_message_width(diagnostic)
+	return vim.fn.strwidth(diagnostic.message)
 end
 
 return M

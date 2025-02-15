@@ -10,4 +10,10 @@ function M.get_offset_encoding(bufnr, fallback)
 	return fallback or "utf-8"
 end
 
+function M.get_left_col_width()
+	local winid = vim.api.nvim_get_current_win()
+	local wininfo = vim.fn.getwininfo(winid)[1]
+	return wininfo.textoff
+end
+
 return M
