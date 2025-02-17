@@ -34,7 +34,6 @@ end
 
 function ActionsPopup:unmount()
 	BasePopup.unmount(self)
-	-- self:del_actions()
 end
 
 function ActionsPopup:del_actions()
@@ -55,8 +54,14 @@ end
 function ActionsPopup:create_all_actions_shortcut()
 	local bufnr = vim.api.nvim_get_current_buf()
 
-	for client_id, actions in ipairs(self.all_actions) do
+	local index = 1
+	for client_id, actions in pairs(self.all_actions) do
 		code_action.actions_shortcut(bufnr, actions, {
+			get_key = function()
+				local key = tostring(index)
+				index = index + 1
+				return key
+			end,
 			callback = function(key, action)
 				local client = vim.lsp.get_client_by_id(client_id)
 				if not client then
@@ -94,9 +99,9 @@ function ActionsPopup:write_lines()
 	local items = {}
 
 	local index = 1
-	for _, item in ipairs(self.all_actions) do
-		for _, action in ipairs(item[2]) do
-			items[#items + 1] = string.format("%d. %s", index, action.title or "123")
+	for _, actions in pairs(self.all_actions) do
+		for _, action in ipairs(actions) do
+			items[#items + 1] = string.format("%d. %s", index, action.title)
 			index = index + 1
 		end
 	end

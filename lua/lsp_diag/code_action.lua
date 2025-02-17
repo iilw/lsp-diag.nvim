@@ -47,14 +47,9 @@ function M.send_code_actions(bufnr, callback, code_action_context)
 	params.context = context
 	vim.lsp.buf_request_all(bufnr, methods.textDocument_codeAction, params, function(results)
 		local all_actions = {}
-
 		for client_id, response in ipairs(results) do
-			table.insert(all_actions, {
-				client_id,
-				response.result,
-			})
+			all_actions[#all_actions + 1] = response.result
 		end
-
 		callback(all_actions)
 	end)
 end
