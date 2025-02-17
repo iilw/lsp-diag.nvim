@@ -5,6 +5,7 @@ local BasePopup = require("lsp_diag.popup")
 --- @class lsp_diag.Popup.Diagnostic : lsp_diag.Popup
 local DiagPopup = BasePopup:extend()
 
+--- @param options lsp_diag.Popup.options
 function DiagPopup:init(options)
 	local diagnostic = options.diagnostic
 	--- @type nui_popup_options
@@ -23,7 +24,7 @@ function DiagPopup:init(options)
 
 	options.nui_options = vim.tbl_deep_extend("keep", options.nui_options or {}, default_options)
 
-	BasePopup.init(self, options)
+	BasePopup.init(self, "diag", options)
 end
 
 function DiagPopup:mount()

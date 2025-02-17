@@ -29,7 +29,7 @@ function ActionsPopup:init(options, all_actions)
 		},
 	}
 	options.nui_options = vim.tbl_deep_extend("keep", options.nui_options or {}, default_options)
-	BasePopup.init(self, options)
+	BasePopup.init(self, "actions", options)
 end
 
 function ActionsPopup:unmount()
