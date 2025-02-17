@@ -3,10 +3,15 @@ local M = {}
 --- @class lsp_diag.Options
 local defaults = {
 	popup = {
+		--- @type nui_popup_options
+		base = {
+			border = {
+				style = "rounded",
+			},
+		},
 		---@type nui_popup_options
 		diag = {
 			border = {
-				style = "rounded",
 				text = {
 					top = "HINT",
 				},
@@ -15,7 +20,6 @@ local defaults = {
 		--- @type nui_popup_options
 		actions = {
 			border = {
-				style = "rounded",
 				text = {
 					top = "ACTIONS",
 				},

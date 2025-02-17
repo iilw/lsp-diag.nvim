@@ -1,32 +1,37 @@
+--- @class lsp_diag.Diagnostic
+--- @field private diagnostic vim.Diagnostic
 local M = require("lsp_diag.utils.class"):extend()
 
 --- @param diagnostic vim.Diagnostic
+function M:new(diagnostic)
+	self.diagnostic = diagnostic
+	return self
+end
+
+function M:get()
+	return self.diagnostic
+end
+
 --- @return {row: integer, col: integer}
-function M.get_pos(diagnostic)
+function M:get_pos()
 	return {
-		row = diagnostic.lnum + 1,
-		col = diagnostic.col,
+		row = self.diagnostic.lnum + 1,
+		col = self.diagnostic.col,
 	}
 end
 
---- @param diagnostic vim.Diagnostic
-function M.is_cursor_on_diagnostic(diagnostic)
+function M:is_cursor_on_diagnostic()
 	local cursor_pos = vim.api.nvim_win_get_cursor(0)
-	return diagnostic.lnum == cursor_pos[1] - 1
+	return self.diagnostic.lnum == cursor_pos[1] - 1
 end
 
---- @param diagnostic? vim.Diagnostic
-function M.set_cursor(diagnostic)
-	if diagnostic and M.is_cursor_on_diagnostic(diagnostic) == false then
-		vim.api.nvim_win_set_cursor(0, M.get_pos(diagnostic))
-	else
-		print("diagnostic not found")
-	end
+function M:set_cursor()
+	local pos = M:get_pos()
+	vim.api.nvim_win_set_cursor(0, { pos.row, pos.col })
 end
 
---- @param diagnostic vim.Diagnostic
-function M.get_message_width(diagnostic)
-	return vim.fn.strwidth(diagnostic.message)
+function M:get_message_width()
+	return vim.fn.strwidth(self.diagnostic.message)
 end
 
 return M
