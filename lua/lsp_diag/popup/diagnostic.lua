@@ -2,22 +2,18 @@ local utils = require("lsp_diag.utils")
 
 local BasePopup = require("lsp_diag.popup")
 
+---@alias lsp_diag.Popup.Diagnostic.constructor fun(options:lsp_diag.Popup.options):lsp_diag.Popup.Diagnostic
+
 --- @class lsp_diag.Popup.Diagnostic : lsp_diag.Popup
 local DiagPopup = BasePopup:extend()
 
 --- @param options lsp_diag.Popup.options
 function DiagPopup:init(options)
-	local diagnostic = options.diagnostic
+	self.diagnostic = options.diagnostic
 	--- @type nui_popup_options
 	local default_options = {
-		anchor = "NW",
-		relative = "cursor",
-		position = {
-			row = 2,
-			col = 1,
-		},
 		size = {
-			width = diagnostic:get_message_width(),
+			width = self.diagnostic:get_message_width(),
 			height = 1,
 		},
 	}
@@ -25,11 +21,12 @@ function DiagPopup:init(options)
 	options.nui_options = vim.tbl_deep_extend("keep", options.nui_options or {}, default_options)
 
 	BasePopup.init(self, "diag", options)
+
+	self:write_message()
 end
 
 function DiagPopup:mount()
 	BasePopup.mount(self)
-	self:write_message()
 end
 
 function DiagPopup:message_format()
@@ -50,4 +47,7 @@ function DiagPopup:write_message()
 	-- vim.api.nvim_buf_add_highlight(bufnr, 0, "hl_group", 0, 1, 1)
 end
 
-return DiagPopup
+--- @type lsp_diag.Popup.Diagnostic|lsp_diag.Popup.Diagnostic.constructor
+local DiagPopupNew = DiagPopup
+
+return DiagPopupNew

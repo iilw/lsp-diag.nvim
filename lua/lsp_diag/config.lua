@@ -5,6 +5,12 @@ local defaults = {
 	popup = {
 		--- @type nui_popup_options
 		base = {
+			anchor = "NW",
+			relative = "cursor",
+			position = {
+				row = 2,
+				col = 1,
+			},
 			border = {
 				style = "rounded",
 			},

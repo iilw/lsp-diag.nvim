@@ -4,7 +4,7 @@ local M = {}
 function M.setup(opts)
 	require("lsp_diag.config").setup(opts)
 
-	vim.api.nvim_set_keymap("n", "]e", "<cmd>lua require('lsp_diag.actions').show_goto_next_diagnostic()<cr>", {
+	vim.api.nvim_set_keymap("n", "]e", "<cmd>lua require('lsp_diag.actions').show_layout()<cr>", {
 		noremap = true,
 		silent = true,
 	})
