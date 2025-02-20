@@ -1,6 +1,1 @@
-{
-    "diagnostics.disable": [
-        "unused-function",
-        "unused-local"
-    ]
-}
+{}
