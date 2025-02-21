@@ -2,7 +2,7 @@ local M = {}
 
 --- @param opts nui_code_action_options
 function M.setup(opts)
-	vim.notify("hello nui-codeaction.nvim")
+	-- vim.notify("hello nui-codeaction.nvim")
 
 	require("nui-codeaction.config").setup(opts)
 
