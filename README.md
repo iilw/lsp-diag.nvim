@@ -15,6 +15,9 @@ A Neovim plugin based on nui.nvim that displays code actions in a floating windo
 ```lua
 {
     "iilw/nui-codeaction.nvim",
+    dependencies = {
+        "MunifTanjim/nui.nvim"
+    },
     opts = {}
 }
 ```
