@@ -1,18 +1,47 @@
 # nui-codeaction.nvim
 
-一个基于 nui.nvim Neovim 插件，用于在浮动窗口中显示代码操作（Code Actions）。通过简洁的布局和交互，帮助开发者速查修复代码问题。
+A Neovim plugin based on nui.nvim that displays code actions in a floating window. With a clean layout and intuitive interactions, it helps developers quickly inspect and fix code issues.
 
-## 功能特性
+## Features
 
-## 安装
+- **Floating Window Display**: Utilizes nui. nvim to show code actions in a floating window, providing a clean and organized interface.
 
-## 配置
 
-## 使用
+## Installation
 
-## License
-本项目基于 MIT License 开源。
+### [Lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{
+    "iilw/nui-codeaction.nvim",
+    event = "Buf",
+    opts = {}
+}
+```
 
-## 致谢
-- 感谢 nui.nvim 提供了强大的 UI 组件。
-- 感谢 Neovim 社区对 LSP 和诊断功能的支持。
+## Configuration
+
+```lua
+opts = {
+    notify_silent = false,
+	nui_options = {
+		border = {
+			style = "rounded",
+			text = {
+				top = "ACTIONS",
+			},
+		},
+	},
+}
+```
+### [nui_options](https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup)
+
+## Use
+
+```lua
+:NuiCodeactionShow
+```
+
+## Reference
+- [nui.nvim](https://github.com/MunifTanjim/nui.nvim)
+
+Thanks to nui.nvim for providing powerful UI components.
