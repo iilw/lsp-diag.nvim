@@ -1,6 +1,6 @@
-# lsp-diag
+# nui-codeaction.nvim
 
-一个基于 nui.nvim 和 vim.diagnostic 的 Neovim 插件，用于在浮动窗口中显示诊断信息和代码操作（Code Actions）。通过简洁的布局和交互，帮助开发者快速查看和修复代码问题。
+一个基于 nui.nvim Neovim 插件，用于在浮动窗口中显示代码操作（Code Actions）。通过简洁的布局和交互，帮助开发者速查修复代码问题。
 
 ## 功能特性
 
